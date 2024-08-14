@@ -3,7 +3,8 @@
 
 Vytvorenie užívateľa:
 ```powershell
-`$Password = Read-Host -AsSecureString "Enter the password for TestUser" New-LocalUser -Name "TestUser" -Password $Password -FullName "Test User" -Description "Test user account"`
+`$Password = Read-Host -AsSecureString "Enter the password for TestUser" 
+New-LocalUser -Name "TestUser" -Password $Password -FullName "Test User" -Description "Test user account"`
 
 # pridanie uzivatela k Adminom
 `Add-LocalGroupMember -Group "Administrators" -Member "TestUser"`
@@ -62,12 +63,19 @@ Vacsina uniknutych hesiel pochadza z kradezi u velkych poskytovatelov sluzieb ak
 > Naco vylamovat zamky ked mate od chaty kluc ?
 
 ``` bash
-echo -n heslo | md5sum
+echo -n heslo | md5sum > pwd.txt
 md5sum SUBOR
+
+cat pwd.txt
 ```
 
 >[!warning]
 >HACKER - Narozdiel od predstáv filmových fanúšikov sa nemusí hacker nikam ponáhľať. Má na prienik do systému more času na získanie hesiel, právomocí, prístupov, zbieranie dát
+
+``` powershell
+"hello world" | Get-Hash -Algorithm MD5
+```
+```
 
 
 >[! warning] TOOLBOX>KALI LINUX : johntheripper - tradicny password cracker

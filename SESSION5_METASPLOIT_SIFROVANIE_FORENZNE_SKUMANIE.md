@@ -198,6 +198,8 @@ Dnes bude rušný deň Ranný telefonát neveští nič dobrého. Kybernetický 
 ## A.1 PASÍVNY PRIESKUM 
 #live_forensics
 
+[[Ktor to bude robit]]
+
 Rozdeľujeme sa do trosch skupín s cieľom zhromaždiť pasívne to znamená bez zásahu do LAN čo najviac informácií o INCIDENTE. Jedna skupina kontruluje `eve.json`  dátový výstup zo Suricaty IDS. ďalšia skupina prehrabáva Logy. Akonáhle sa niečo dozvieme informujeme ostatné skupiny a zapíšeme si čas a miesto kde sa udalosť stala ako aj IP či MAC adresy aktérov.
 Posledná skupina má na starosti záznamy v .pcap. Vyzerá to tak, že útok sa udial v čase keď väčšina Endpoitov bola vypnutá. To znamená, že komunikácie bude menej ako vo všedný pracovný deň. Vďaka IDS a centralizovaným logom neprešlo od napadnutia veľa času a je možné, že malware alebo hackeri sú v RECON fáze a zatiaľ nebrnkli na žiaden náš HONEYPOT v chránených segmentoch LAN. 
 

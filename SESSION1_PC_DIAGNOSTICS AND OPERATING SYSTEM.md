@@ -7,6 +7,7 @@
 
 FORTIS AURIS
 
+
 ### Principy kurzu:
 
 1. Raz skusit je viacej ako 5 krat vidiet.
