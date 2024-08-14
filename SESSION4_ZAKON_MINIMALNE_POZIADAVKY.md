@@ -569,4 +569,226 @@ Na vnútornom perimetri budú pre Vás pripravené počítače na ktorích  mô�
 >### HESLO DO CLUSTRA VAM BUDE NA POZIADANIE ZASLANE V ZOOM CHATE.
 
 
+# A. Incidenty, Prevencia a Opatrenia
+#incidentresponse
+
+1. PLAN (DEFINOVANE CSIRT, MENA, KOMPETENCIE, ZDROJE, NASTROJE, CASOVY HARMONOGRAM)
+
+2. REALIZACIA OPATRENI
+FAZA 1 -IDENTIFIKÁCIA INCIDENTU
+FAZA 2 IZOLÁCIA INCIDENTU
+FAZA 3 ANALÝZA DAT O INCIDENTE
+FAZA 4 ODSTRÁNENIE NAKAZY
+FAZA 5 OBNOVA SYSTEMU 
+FAZA 6 POUČENIE, ANALYZA POSTUPOV PLANOV A CHYB
+
+
+## A.1 DDOS - Distributed Denial of Services
+
+>[!warning]
+>IT SEC: Neustale monitorujte mnozstvo komunikacie na vonkajsich portoch serverov v DMZ !!!
+
+>[!info] 
+>HACKER:  Utok spociva v navyseni dopytu na server s mnozstva neznamych IP adries cim dochadza k pretazeniu servera a nestiha servovat odpovede. Pre beznych klientov bude Vas server nepristupny a sluzba prestane fungovat. Dlhodobe zatazenie moze sposobit aj dalsie technicke problemy. 
+
+Utok ma dve podoby... jedna je rychlo posielat requesty na server a druha je zdrzovat TCP spojenie a poskytovanie poziadaviek
+
+
+
+A.1.1 PREVENCIA
+
+a. Preverte u ISP a poskytovatela hostingu, Cloudu a domeny moznosti tzv. MITIGACIE v pripade utoku. 
+
+b. Pripravte WHITELIST kritickych odberatelov sluzieb
+
+c. Prioritizujte stalych odberatelov
+
+d. Pripravte moznosti presmerovat Traffic na ine zalozne servery a tym kratkodobo navysite kapacitu sluzby. 
+
+
+UKÁŽKA	
+``` bash
+hping3 
+```
+
+### A.1.2 OPATRENIA
+
+Ak spozorujete masivny nárast prichádzajúceho trafficu na port pokračujte podľa prichystaného plánu. Packety pôjdu z veľkého množstva IP adries a prvá a najväčšia línia obrany vznikne u Vaľeho IS, Webhostingu či  poskytovateľa Internetu alebo Cloud na ktorom beží Váš server. Platí, že čím väčší provider služby tým väčšie sú jeho možnosti Mitigácie a odrazenia útoku.
+
+V tomto momente aktivujte Whitelisty svojich stálych a d§ležitých zákazníkov pre ktorích musíte servis udržať ONLINE.
+
+Navýšte krátkoddobo kapacitu Vašeho servera čo sa týka jeho výkonu aj sieťových rozhraní.
+
+Dokumentujte odkiaľ útok ide a skúste zistiť PREČO.
+
+>[!info] PRIKLAD ANONYMOUS vs. SAUDSKÁ ARÁBIA
+>
+
+
+## A.2 - PHISHINGOVÁ KAMPAŇ
+
+A.2.1 PREVENCIA
+
+>[!info] 
+>IT SEC: Cieľom Phishingovej kampaňe je aby užívateľ poskytol útočníkovi bud svoje prihlasovacie údaje k službe, alebo spustenie škodlivého kódu pomocou linku či súboru. 
+
+a. Najefektívnejšou prevenciou je preškolenie USEROV a upozornenie ich na možnosti a ciele útočníkov. Čím je útok viac cielený bude aj náročnejšie odhaliť phishingový mail.
+
+b. Ďalším preventívnym opatrením nepoužívanie Endpointov a Serverov v chránenej sieti na súkromné využitie. Tým sa vyrieši veľa problémov s falošnými prihlasovacími formulármi do Sociálnych sietí , Internetbankingu a pod.
+
+c. Dobrý nápad je aj zakázanie preposielania typov súborov, ktoré môžu obsahovať škodlivý kód.
+ 
+A.2.2 OPATRENIA
+
+a. Preveriť koľko užívateľov dostalo takýto mail.  Kvalita toho Phishingu. Whaling
+
+b. Vylúčiť možnosť, že na neho niekto klikol a to aj pohovorom aj kontrolou sieťovej prevádzky, logov a AV.
+
+c. Identifikovať ZDROJ odkiaľ prišiel a zakázať ho na Firewalle alebo Filtroch.
+
+d. Zachovať kópiu mailu a prílohy na forenzné skúmanie.
+
+>[!warning] 
+>ITSEC: AK SA ODHODLATE VYSKÚŠAŤ SVOJE SCHOPNOSTI A SKÚMAŤ ROB TO OPATRNE VO SVOJOM HACKLABE = NA ŠPECIÁLNE VYTVORENOM PC VO VM IZOLOVANOM SANDBOXE.
+
+>[! demo]
+>SET - SOCIAL ENGENEERING TOOLKIT - zrodenie Phishingoveho mailu.
+
+ 
+## A.3 - MALWARE / RANSOMWARE infekcia
+
+INFO: Cieľom hackera je získať prístup k informáciám, výpočtového výkonu, kryptomene či znehodnotiť dáta a vypýtať si odmenu za ich opätovné sprístupnenie. RANSOMWARE sa väčšinou prihlási po zašifrovaní dát a vypíta si odmenu. PENIAZE NIKOMU NEDÁVAJTE 
+
+### A.3.1 PREVENCIA
+
+a. BIOS Ochrana proti zapisu - pravdepodobnost mala ale treba najnovsi FIRMWARE
+
+b. BROWSER na firemne veci(vypnuta Java, ActiveX a pod) a iny na sukromne
+
+c. Virtualizacia aplikacii  
+
+>[! demo]
+>DOCKER  - SANDBOXING - kontajner s vlastnym VOLUME (diskom)
+
+
+d. IDS, IPS, AV, Logy a všetko čo nám pomôže kedy a ako sa dostal Malware do siete a určí aj rozsah infekcie.
+
+e. Systém rýchlej obnovy z BACKUPOV
+
+>[!info]
+>AK  STE BOLI NAPADNUTÝ RANSOMWARE  neklesajte na duchu - KAVALERIA JE UZ NA CESTE. Desiatky ľudí pracujú na tom aby Vaše dáta zachránili. Títo neviditeľní hrdinovia hľadajú cestičku ako prelomiť šifrovanie a väčšinou to chvíľu trvá. DISK OZNAČTE A ODLOŽTE DO SKRINE. O NEJAKÝ ČAS HO POMOCOU NEJAKÉHO NÁSTROJA ODŠIFRUJETE.
+
+
+### A.3.2 OPATRENIA :
+
+
+1. Identifikacia MALWARE a infikovanych HOSTOV
+
+2. Izolacia IZOLACIA INFIKOVANEJ CASTI SIETE - zabranenie sirenia
+
+>[ !toolbox ] 
+>POUŽI NÁSTROJE: CONTENT FILTER, IPS na LAN, BLACKLIST, 
+>vypnutie sluzieb, portov,
+>odpojenie zo siete - COMMAND AND CONTROL
+
+Sledovanie jeho komunikacie pomocou IDS - CUSTOM SIGNATURE
+
+3. Dezinfekcia pomocou AV
+
+4.  REINSTALACIA - Admin pristup, Manipulacia so systemovymi subormi, Backdoor, nestabilita, Pochybnosti
+
+5. ANALYZA UCINNOSTI A PLANU
+
+## A.4 - HACKER NA CHRANENEJ SIETI
+
+FYZICKA VRSTVA - SNIFFING 
+DATA LINK - SPOOFING
+SIETOVA - MITM
+TRANSPORTNA - RECON  (PRIESKUM)
+SESSION - HIJACKING (UNOS)
+PREZENTACNA - PHISHING
+APLIKACNA - EXPLOITACIA
+
+>[!info] PENETRACNE TESTY !!!
+PRISTUP DO USERA>ZISKAJ ROOT PRAVA>PREHLADAJ>ZABETONUJ (ABY ZOSTAL TVOJ)
+
+>[! warning] 
+>AK CHCETE UROBIŤ PENETRAČNÉ TESTY MUSÍTE MAŤ PISOMNE POVOLENIE SO ŠPECIFIKÁCIOU TESTOV A ČASOVÝM OBDOBÍM KEDY BUDÚ VYKONANÉ!!!
+
+
+
+PREVENCIA:
+
+Vsetko co sme sa doposial ucili. 
+
+1. neopravneny scan  - ids, pcap, logy
+
+2. brute force attack - ids, pcap, logy  KODY /etc/passwd, /etc/shadow
+
+3. neopravnena wifi - aircrack-ng
+
+
+#### LINUX PYTHON SKRIPT NA VYPISANIE NAJDENYCH WIFI SIETI
+```python
+import subprocess
+
+def scan_wifi():
+    cmd = "nmcli dev wifi list"
+    networks = subprocess.check_output(cmd, shell=True)
+    networks = networks.decode("utf-8")
+    return networks
+
+print(scan_wifi())
+```
+SPUSTIME:
+``` bash
+spustime python3 wifi_scan_linux.py
+```
+
+LINUX BASH SKRIPT NA SKENOVANIE WIFI kazdych 300 sekund {5 minut} uklada do suboru
+``` bash
+#!/bin/bash
+
+while true; do
+    nmcli dev wifi list >> wifi_list.txt
+    sleep 300
+done
+```
+
+SPUSTIME NA POZADI:
+
+``` bash
+sh ./wifi_scan_bash.sh &
+```
+
+>[!info] 
+>Uloha spustena na pozadi sa objavi v zozname procesov pomocou prikazov ```ps```, ```top``` alebo pomocou prikazu ```jobs```. <br><br> Do popredia ulohu dostaneme pomocou prikazu ```fg``` a ukoncime `Ctrl-c` alebo ju nechame `Ctrl-z`. <br><br>Ak mame PID mozeme proces ukoncit `kill PID`
+
+
+
+
+4.neopravnene zariadenie na LAN - nmap
+``` bash
+nmap IP/24 > zoznam_zariadeni.scan  # scanuje subsiet 254 zariadeni
+```
+
+
+5. privilege escalation - logy
+
+>[! warning ]
+>HACKER: PRIVILEGE ESCALATION je technika pomocou ktorej utocnik ziskava vyssie PERMISSIONS a tym pristup k sluzbam a suboro. Cielom je samozrejme byt ROOT.  
+
+
+OPATRENIA:
+
+a. Identifikacia pocitacov kde bol hacker uspesne pripojeny
+
+b. Izolacia siete a analyza aktivit hackera
+
+c. Dezinfekcia a reinstalacia
+
+>[!warning] 
+>AK BOL HACKER NA POCITACI A NIE SME SI ISTY CO SA MU PODARILO A CO NIE... AK SA DA. SPRAVTE KOMPLET REINSTALACIU NA NOVY HDD ALEBO SDD {NAJLEPSIE ESTE ZABALENY} !!! <br>
+>VYMONTOVANY HACKNUTY DISK ODLOZTE PRE POTREBY POLICIE A FORENZNEHO SKUMANIA !!!  OZNACTE HO AKO JED AJ S ID CISLOM POCITACA :)
+
 
